@@ -87,7 +87,7 @@ for ($i = 1; $i -le $seat; $i++) {
         $mlWorkspace = New-AzMLWorkspace -Name $workspaceName -ResourceGroupName $resourceGroupName -Location $location -ApplicationInsightId $appInsights.Id -KeyVaultId $keyVault.ResourceId -StorageAccountId $storageAccount.Id -IdentityType "SystemAssigned" -Kind 'Default'
         Write-Output "$(Get-Date -Format HH:mm:ss) workspace $workspaceName is created"
         # Assign the "AzureML Data Scientist" role to the user
-        $userId = $userDetails[$i].UserObjectId
+        $userId = $userDetails[$i-0].UserObjectId
         $roleDefinition = Get-AzRoleDefinition -Name "AzureML Data Scientist"
         New-AzRoleAssignment -ObjectId $userId -RoleDefinitionName $roleDefinition.Name -Scope $mlWorkspace.Id
         Write-Output "$(Get-Date -Format HH:mm:ss) roleDefinition is assigned"
