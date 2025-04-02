@@ -1,5 +1,5 @@
 #  Powershell script for building Azure ML Workspace in batch
-This Powershell scripts are designed for for building Azure ML Workspace in batch. Each lab user (seat) will be allocated with one dedicated Azure ML workspace and one dedicated Computer Instance. And all the lab users shared the same Storage Account, Azure Key Vault and Application Insight.
+These PowerShell scripts are designed for building Azure ML Workspaces in batch. Each lab user (seat) will be allocated one dedicated Azure ML Workspace and one dedicated Computer Instance. All lab users will share the same Storage Account, Azure Key Vault, and Application Insights..
 
 Verify the Powershell version and make sure the version above 5.1
 ```PowerShell
@@ -57,7 +57,7 @@ and then execute
 ```
 .\createuser.ps1
 ``` 
-After the execution is completed, you can see a new file "user_details.csv" is generated. Keep this file unchanged for Step 5 and Step 7.
+After the execution is completed, you can see a new file **user_details.csv** is generated. Keep this file unchanged for Step 5 and Step 7.
 
 ##  Step 5: Create Azure ML workspaces/Computer instances resources
 **This step requires Azure Subscription owner permission.**
@@ -101,3 +101,8 @@ Azure ML workspace and computer instance takes (8-10 minutues) for one seat prov
 
 ##  Step 8: Remove the shared Azure resources
 Access Azure portal, select the **Resource Group**, locate your resource group name like "rg-mlclass100", and manual remove the Storage Account, Azure Key Vault, Application Insight and Resource Group as well.
+
+##  Boost Performance with Parallel Execution
+It takes approximately 8 minutes to spin up one workspace and one computer instance. To accelerate the execution, you might consider using multiple PowerShell scripts.
+
+![parallelrun](parallelrun.png)
