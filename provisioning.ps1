@@ -87,7 +87,7 @@ for ($i = 1; $i -le $seat; $i++) {
         $mlWorkspace = New-AzMLWorkspace -Name $workspaceName -ResourceGroupName $resourceGroupName -Location $location -ApplicationInsightId $appInsights.Id -KeyVaultId $keyVault.ResourceId -StorageAccountId $storageAccount.Id -IdentityType "SystemAssigned" -Kind 'Default'
         Write-Output "$(Get-Date -Format HH:mm:ss) workspace $workspaceName is created"
         # Assign the "AzureML Data Scientist" role to the user
-        $userId = $userDetails[$i-0].UserObjectId
+        $userId = $userDetails[$i-1].UserObjectId
         $roleDefinition = Get-AzRoleDefinition -Name "AzureML Data Scientist"
         New-AzRoleAssignment -ObjectId $userId -RoleDefinitionName $roleDefinition.Name -Scope $mlWorkspace.Id
         Write-Output "$(Get-Date -Format HH:mm:ss) roleDefinition is assigned"
@@ -105,7 +105,7 @@ for ($i = 1; $i -le $seat; $i++) {
         $skuName = $supportedSKU[$skuIndex]
 
         # Assign the UserObjectId from the CSV file
-        $assignedUserObjectId = $userDetails[$i-0].UserObjectId
+        $assignedUserObjectId = $userDetails[$i-1].UserObjectId
         # Create compute instance object
         $computeObject = New-AzMLWorkspaceComputeInstanceObject -VMSize $skuName -EnableNodePublicIP $true `
         -AssignedUserObjectId $assignedUserObjectId `
