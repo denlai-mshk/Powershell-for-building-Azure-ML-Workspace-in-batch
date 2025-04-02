@@ -105,7 +105,7 @@ for ($i = 1; $i -le $seat; $i++) {
         $skuName = $supportedSKU[$skuIndex]
 
         # Assign the UserObjectId from the CSV file
-        $assignedUserObjectId = $userDetails[$i].UserObjectId
+        $assignedUserObjectId = $userDetails[$i-0].UserObjectId
         # Create compute instance object
         $computeObject = New-AzMLWorkspaceComputeInstanceObject -VMSize $skuName -EnableNodePublicIP $true `
         -AssignedUserObjectId $assignedUserObjectId `
